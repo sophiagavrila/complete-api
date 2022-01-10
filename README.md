@@ -4,7 +4,7 @@ This application represents the backend of a fullstack application capable of pe
 <br>
 
 ## Data Store 🛂
-This app is connected to an **H2 database** which you can access (when running) at `http:localhost:5000/api/h2-console` with the following credentials
+This app is connected to an **H2 database** which you can access (when running) at `http:localhost:5000/api/h2-console` with the following credentials:
 
   -  URL: `jdbc:h2:mem:db`
   -  Username: `sa`
