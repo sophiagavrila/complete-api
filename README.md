@@ -3,7 +3,7 @@ This application represents the backend of a fullstack application capable of pe
 
 <br>
 
-## Data Store
+## Data Store 🛂
 This app is connected to an **H2 database** which you can access (when running) at `http:localhost:5000/api/h2-console` with the following credentials
 
   -  URL: `jdbc:h2:mem:db`
@@ -12,7 +12,7 @@ This app is connected to an **H2 database** which you can access (when running) 
 
 <br>
 
-## Dockerization
+## Dockerization 🐳
 To run this app, complete with SRE tools such as Prometheus & Grafana, do the following:
 
 - Open a terminal within the root directory of the app: `CompleteAPI/...`
