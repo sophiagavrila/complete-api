@@ -28,8 +28,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
-@Data // generates getters/setter, toString, hashCode, and equals() method
-		// automatically
+@Data // generates getters/setter, toString, hashCode, and equals() method automatically
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -69,8 +68,7 @@ public class User {
 	 *            trimmed length is greater than zero.
 	 */
 
-	@Email // from javax.validation.constraints this ensures every email property contains
-			// @
+	@Email // from javax.validation.constraints this ensures every email property contains @
 	private String email;
 
 	// Here since we're defining the JoinTable in the user class, we declare that
