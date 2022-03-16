@@ -22,7 +22,7 @@ public class ApiError {
 	
 	private int status;
 	
-	private String error; // reperesent HTTP error ( in words)
+	private String error; // represent HTTP error ( in words)
 	
 	private String message;
 	private String debugMessage;
