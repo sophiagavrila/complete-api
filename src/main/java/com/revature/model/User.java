@@ -27,42 +27,58 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users")
-@Data // generates getters/setter, toString, hashCode, and equals() method automatically
+@Table(name = "users")
+@Data // generates getters/setter, toString, hashCode, and equals() method
+		// automatically
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+/**
+ * @JsonIdentityInfo is used when objects have parent child
+ *                   relationship. @JsonIdentityInfo is used to indicate that
+ *                   object identity will be used during
+ *                   serialization/de-serialization.
+ */
 public class User {
-	
+
 	@Id
-	@Column(name="user_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView({ JsonViewProfiles.User.class, JsonViewProfiles.Address.class })
 	private int id;
-	
+
 	// make sure that the length of these fields is > 1
-	@Length(min=2)
+	@Length(min = 2)
 	private String firstName;
 	private String lastName;
-	
+
 	@NotBlank
-	@Length(min=5)
+	@Length(min = 5)
 	@Pattern(regexp = "[a-zA-Z][a-zA-Z0-9]*") // use regex to make sure only alphanumeric chars allowed, no spaces
 	private String username;
-	
+
 	@NotBlank
 	private String password;
-	
-	@Email // from javax.validation.constraints this ensures every email property contains @
+
+	/**
+	 * @NotNull: a constrained CharSequence, Collection, Map, or Array is valid as
+	 *           long as it's not null, but it can be empty.
+	 * @NotEmpty: a constrained CharSequence, Collection, Map, or Array is valid as
+	 *            long as it's not null, and its size/length is greater than zero.
+	 * @NotBlank: a constrained String is valid as long as it's not null, and the
+	 *            trimmed length is greater than zero.
+	 */
+
+	@Email // from javax.validation.constraints this ensures every email property contains
+			// @
 	private String email;
-	
-	// Here since we're defining the JoinTable in the user class, we declare that User.java OWNS the relationship
-	
-    @ManyToMany
-	@JoinTable(name = "users_address",
-    joinColumns = @JoinColumn(name= "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "address_id"))
-    @JsonView(JsonViewProfiles.User.class)
+
+	// Here since we're defining the JoinTable in the user class, we declare that
+	// User.java OWNS the relationship
+
+	@ManyToMany
+	@JoinTable(name = "users_address", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
+	@JsonView(JsonViewProfiles.User.class)
 	private Set<Address> addresses;
 
 	public User(@Length(min = 1) String firstName, String lastName,

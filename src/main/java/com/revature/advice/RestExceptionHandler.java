@@ -18,7 +18,6 @@ import com.revature.exception.UserNotFoundException;
 /**
  * All methods here will intercept certain exception that are sent back 
  * as HTTP Responses from the CONTROLLER
- *
  */
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler{
@@ -29,7 +28,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 	 */
 	private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
 		
-		// we pass the status of the apiError and the boyd of the apiError
+		// we pass the status of the apiError and the body of the apiError
 		return ResponseEntity.status(apiError.getStatus()).body(apiError);
 	}
 
